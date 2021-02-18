@@ -24,14 +24,14 @@ router.get("/", (req, res) => {
     const getData = async(url) => {
         try {
             const response = await axios.get(url)
-            const data = `&{CallID}`;
+            const data = response.data;
             res.send(data);
         } catch (error) {
             res.send(error);
         }
     };
-    getData(url);
 
+    getData(url);
 
     // res.json({
     //     hello: "hi!"
