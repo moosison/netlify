@@ -1,16 +1,16 @@
-const express = require('exprress');
-const serverless = require('seerverless-http');
+const express = require("express");
+const serverless = require("serverless-http");
+
 const app = express();
+const router = express.Router();
 
-const router = express.router();
-
-
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
     res.json({
-        'hello': 'hi'
+        hello: "hi!"
     });
 });
 
-app.use('/.nelify/functions/api', router);
+app.use(`/.netlify/functions/api`, router);
 
+module.exports = app;
 module.exports.handler = serverless(app);
