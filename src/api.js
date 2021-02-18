@@ -19,14 +19,15 @@ const vendor = 'onet;'
 
 router.get("/", (req, res) => {
     const url = req.params;
+    const { CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID } = req.params;
 
     const getData = async(url) => {
         try {
             const response = await axios.get(url)
-            const data = response.data;
-            res.send(data)
+            const data = { CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID };
+            res.send(data);
         } catch (error) {
-            res.send(error)
+            res.send(error);
         }
     }
 
