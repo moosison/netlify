@@ -19,9 +19,14 @@ const vendor = 'onet;'
 
 router.get("/", (req, res) => {
     const url = req.params;
-    const { CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID } = req.params;
-    console.log(CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID)
-    res.send(req.query);
+    const { CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID } = req.query;
+    let action =
+        switch (CallStatus) {
+            case 'CALLING':
+                'ring';
+                break;
+        }
+    res.send(action);
 
     // res.json({
     //     hello: "hi!"
