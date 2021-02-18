@@ -21,9 +21,8 @@ router.get("/", (req, res) => {
     const url = req.params;
     const { CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID } = req.query;
     let action =
-        if (CallStatus === 'CALLING') {
-            return 'ring';
-        } else { return 'error' }
+
+        (CallStatus === 'CALLING') ? 'ring' : 'error';
     res.send(action);
 
     // res.json({
