@@ -29,8 +29,8 @@ router.get("/", (req, res) => {
         } catch (error) {
             res.send(error);
         }
-    }
-    getData(url)
+    };
+    getData(url);
 
 
     // res.json({
