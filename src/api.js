@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
     const url = req.params;
     const { CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID } = req.params;
 
-    res.send(req.params);
+    res.send(req.query);
 
     // res.json({
     //     hello: "hi!"
