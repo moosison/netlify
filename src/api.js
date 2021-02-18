@@ -21,17 +21,7 @@ router.get("/", (req, res) => {
     const url = req.params;
     const { CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID } = req.params;
 
-    const getData = async(url) => {
-        try {
-            const response = await axios.get(url)
-            const data = response.data;
-            res.send(data);
-        } catch (error) {
-            res.send(error);
-        }
-    };
-
-    getData(url);
+    res.send(req.params);
 
     // res.json({
     //     hello: "hi!"
