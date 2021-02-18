@@ -30,8 +30,8 @@ router.get("/", (req, res) => {
             res.send(error);
         }
     }
+    getData(url)
 
-    // getData(url)
 
     // res.json({
     //     hello: "hi!"
