@@ -6,7 +6,7 @@ const app = express();
 const router = express.Router();
 
 const key = 'key';
-const vendor = 'onet;'
+const vendor = 'onet';
 
 // function getparams(params) {
 //     const { CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID } = req.params;
