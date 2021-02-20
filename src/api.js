@@ -20,7 +20,7 @@ const vendor = 'onet';
 router.get("/", async(req, res) => {
     const url = req.params;
 
-    function buildurl(url) {
+    async function buildurl(url) {
         const { CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID } = req.query;
         let action = (CallStatus === 'CALLING') ? 'ring' : 'error';
         let from_phone = CallerIDNum;
