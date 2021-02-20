@@ -19,7 +19,7 @@ const vendor = 'onet';
 
 router.get("/", async(req, res) => {
     const url = req.params;
-
+    let result;
     async function buildurl(url) {
         const { CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID } = req.query;
         let action = (CallStatus === 'CALLING') ? 'ring' : 'error';
@@ -29,7 +29,7 @@ router.get("/", async(req, res) => {
         let call_id = CallAPIID;
         let extension = CalledExtention;
         let resget = { key, vendor, action, target_phone, call_id, from_phone, extension }
-        const result = await axios.get('https://httpbin.org/get', { params: resget });
+        result = await axios.get('https://httpbin.org/get', { params: resget });
     };
     buildurl(url);
     // res.data.args;;
