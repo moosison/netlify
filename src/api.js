@@ -20,10 +20,18 @@ const vendor = 'onet;'
 router.get("/", (req, res) => {
     const url = req.params;
     const { CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID } = req.query;
-    let action =
+    let action = (CallStatus === 'CALLING') ? 'ring' : 'error';
+    let from_phone = CallerIDNum;
 
-        (CallStatus === 'CALLING') ? 'ring' : 'error';
-    res.send(action);
+    if (CalledNumber.startsWith("-972") || CalledNumber.startsWith("+972")) {
+        let target_phone = '0' + CalledNumber.slice(4, );
+    } else {
+        target_phone = CalledNumber
+    };
+    let call_id = CallAPIID;
+    let from_phone = CallerNum;
+    let extension = CalledExtention;
+    res.send(action, target_phone, call_id, from_phone, extension);
 
     // res.json({
     //     hello: "hi!"
