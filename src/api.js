@@ -29,7 +29,7 @@ router.get("/", (req, res) => {
         let target_phone = CalledNumber;
     };
     let call_id = CallAPIID;
-    let from_phone = CallerNum;
+
     let extension = CalledExtention;
     res.send(action, target_phone, call_id, from_phone, extension);
 
