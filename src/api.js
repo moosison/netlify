@@ -31,7 +31,7 @@ router.get("/", async(req, res) => {
     buildurl(url);
 
 
-    res.send(result.data.args);
+    res.send(result);
 
 
     // res.json({
