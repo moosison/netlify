@@ -22,14 +22,11 @@ router.get("/", async(req, res) => {
     let result;
     async function buildurl(url) {
         const { CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID } = req.query;
-        let action = (CallStatus === 'CALLING') ? 'ring' : 'error';
-        let from_phone = CallerIDNum;
+        let resaction = (CallStatus === 'CALLING') ? 'ring' : 'error';
+        let restarget_phone = (CalledNumber.startsWith("-972") || CalledNumber.startsWith("+972")) ? '0' + CalledNumber.slice(4, ) : CalledNumber;
+        let resextension = CalledExtention;
 
-        let target_phone = (CalledNumber.startsWith("-972") || CalledNumber.startsWith("+972")) ? '0' + CalledNumber.slice(4, ) : CalledNumber;
-        let call_id = CallAPIID;
-        let extension = CalledExtention;
-        let resget = { key, vendor, action, target_phone, call_id, from_phone, extension }
-        result = await axios.get('https://httpbin.org/get', { params: resget });
+        result = await axios.get('https://httpbin.org/get', { params: { key: 'key', vendor: 'onet', action: resaction, target_phone: CallerIDNum, call_id: CallAPIID, from_phone: resfrom_phone, extension: resextension } });
     };
     buildurl(url);
     // res.data.args;;
