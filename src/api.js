@@ -29,8 +29,10 @@ router.get("/", async(req, res) => {
         result = await axios.get('https://httpbin.org/get', { params: { key: 'key', vendor: 'onet', action: resaction, target_phone: CallerIDNum, call_id: CallAPIID, from_phone: resfrom_phone, extension: resextension } });
     };
     buildurl(url);
-    // res.data.args;;
-    res.send(result);
+    res.data.args;
+    console.log(result);
+    res.send(res.data.args);
+
 
     // res.json({
     //     hello: "hi!"
