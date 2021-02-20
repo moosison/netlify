@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
     if (CalledNumber.startsWith("-972") || CalledNumber.startsWith("+972")) {
         let target_phone = '0' + CalledNumber.slice(4, );
     } else {
-        target_phone = CalledNumber
+        let target_phone = CalledNumber
     };
     let call_id = CallAPIID;
     let from_phone = CallerNum;
