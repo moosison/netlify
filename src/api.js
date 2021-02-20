@@ -23,15 +23,10 @@ router.get("/", (req, res) => {
     let action = (CallStatus === 'CALLING') ? 'ring' : 'error';
     let from_phone = CallerIDNum;
 
-    if (CalledNumber.startsWith("-972") || CalledNumber.startsWith("+972")) {
-        let target_phone = '0' + CalledNumber.slice(4, );
-    } else {
-        let target_phone = CalledNumber;
-    };
+    let target_phone = (CalledNumber.startsWith("-972") || CalledNumber.startsWith("+972")) ? '0' + CalledNumber.slice(4, ) : CalledNumber;
     let call_id = CallAPIID;
-
     let extension = CalledExtention;
-    res.send(action, target_phone, call_id, from_phone, extension);
+    res.send(key, vendor, action, target_phone, call_id, from_phone, extension);
 
     // res.json({
     //     hello: "hi!"
