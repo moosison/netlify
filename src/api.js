@@ -1,6 +1,7 @@
 const express = require("express");
 const serverless = require("serverless-http");
 const axios = require('axios');
+const queryString = require('query-string');
 
 const app = express();
 const router = express.Router();
@@ -26,12 +27,12 @@ router.get("/", async(req, res) => {
     let restarget_phone = (CalledNumber.startsWith("-972") || CalledNumber.startsWith("+972")) ? '0' + CalledNumber.slice(4, ) : CalledNumber;
     let resextension = CalledExtention;
     let resdata;
-    const result = async() => { resdata = await axios.get('https://httpbin.org/get', { params: { key: 'key', vendor: 'onet', action: resaction, target_phone: CallerIDNum, call_id: CallAPIID, from_phone: CallerIDNum, extension: resextension } }); };
+    let result = { key: 'key', vendor: 'onet', action: resaction, target_phone: CallerIDNum, call_id: CallAPIID, from_phone: CallerIDNum, extension: resextension };
 
-    result();
+    const stringified = queryString.stringify(result);
 
 
-    res.send(resdata.data.args);
+    res.send(stringified);
 
 
     // res.json({
