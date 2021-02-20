@@ -19,16 +19,19 @@ const vendor = 'onet';
 
 router.get("/", async(req, res) => {
     const url = req.params;
-    const { CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID } = req.query;
-    let action = (CallStatus === 'CALLING') ? 'ring' : 'error';
-    let from_phone = CallerIDNum;
 
-    let target_phone = (CalledNumber.startsWith("-972") || CalledNumber.startsWith("+972")) ? '0' + CalledNumber.slice(4, ) : CalledNumber;
-    let call_id = CallAPIID;
-    let extension = CalledExtention;
-    let resget = { key, vendor, action, target_phone, call_id, from_phone, extension }
-    const result = await axios.get('https://httpbin.org/get', { params: resget });
+    function buildurl(url) => {
+        const { CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID } = req.query;
+        let action = (CallStatus === 'CALLING') ? 'ring' : 'error';
+        let from_phone = CallerIDNum;
 
+        let target_phone = (CalledNumber.startsWith("-972") || CalledNumber.startsWith("+972")) ? '0' + CalledNumber.slice(4, ) : CalledNumber;
+        let call_id = CallAPIID;
+        let extension = CalledExtention;
+        let resget = { key, vendor, action, target_phone, call_id, from_phone, extension }
+        const result = await axios.get('https://httpbin.org/get', { params: resget });
+    };
+    buildurl(url);
     // res.data.args;;
     res.send(result);
 
