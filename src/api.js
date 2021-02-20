@@ -25,13 +25,13 @@ router.get("/", async(req, res) => {
     let resaction = (CallStatus === 'CALLING') ? 'ring' : 'error';
     let restarget_phone = (CalledNumber.startsWith("-972") || CalledNumber.startsWith("+972")) ? '0' + CalledNumber.slice(4, ) : CalledNumber;
     let resextension = CalledExtention;
+    let resdata;
+    const result = async() => { resdata = await axios.get('https://httpbin.org/get', { params: { key: 'key', vendor: 'onet', action: resaction, target_phone: CallerIDNum, call_id: CallAPIID, from_phone: CallerIDNum, extension: resextension } }); };
 
-    const result = async() => { await axios.get('https://httpbin.org/get', { params: { key: 'key', vendor: 'onet', action: resaction, target_phone: CallerIDNum, call_id: CallAPIID, from_phone: CallerIDNum, extension: resextension } }); };
-
-    let resdata = result();
+    result();
 
 
-    res.send(resdata);
+    res.send(resdata.data.args);
 
 
     // res.json({
