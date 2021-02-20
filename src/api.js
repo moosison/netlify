@@ -26,12 +26,12 @@ router.get("/", async(req, res) => {
     let restarget_phone = (CalledNumber.startsWith("-972") || CalledNumber.startsWith("+972")) ? '0' + CalledNumber.slice(4, ) : CalledNumber;
     let resextension = CalledExtention;
 
-    let result = axios.get('https://httpbin.org/get', { params: { key: 'key', vendor: 'onet', action: resaction, target_phone: CallerIDNum, call_id: CallAPIID, from_phone: CallerIDNum, extension: resextension } });
+    const result = async() => { await axios.get('https://httpbin.org/get', { params: { key: 'key', vendor: 'onet', action: resaction, target_phone: CallerIDNum, call_id: CallAPIID, from_phone: CallerIDNum, extension: resextension } }); };
 
 
 
 
-    res.send(result);
+    res.send(result());
 
 
     // res.json({
