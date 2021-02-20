@@ -26,7 +26,8 @@ router.get("/", (req, res) => {
     let target_phone = (CalledNumber.startsWith("-972") || CalledNumber.startsWith("+972")) ? '0' + CalledNumber.slice(4, ) : CalledNumber;
     let call_id = CallAPIID;
     let extension = CalledExtention;
-    res.send(key, vendor, action, target_phone, call_id, from_phone, extension);
+    let resget = [key, vendor, action, target_phone, call_id, from_phone, extension];
+    res.send(resget);
 
     // res.json({
     //     hello: "hi!"
