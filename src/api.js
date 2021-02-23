@@ -2,15 +2,15 @@ const express = require("express");
 const serverless = require("serverless-http");
 const axios = require('axios');
 const queryString = require('query-string');
-
+const morgan = require('morgan');
+morgan(tiny);
 const app = express();
 const router = express.Router();
 
 const key = 'key';
 const vendor = 'onet';
 
-// function getparams(params) {
-//     const { CallID, CallerNum, CallerIDNum, CalledID, CalledExtention, CallStatus, CallFlow, CallerExtention, CalledNumber, CallAPIID } = req.params;
+
 
 
 // }
